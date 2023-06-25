@@ -47,6 +47,7 @@ if (fileStatus == -1)
 	exit(-1);
 }
 
+#include "monty.h"
 /**
 * getOpcodeFunc - Entry Poitn
 * @str: character to check for opcode

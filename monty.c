@@ -1,4 +1,6 @@
 #include "monty.h"
+/*NOTE: Needed to avoid compiler fail*/
+int stackBusy = 0;
 /**
  * main - Entry Point
  * @argCount: number of arguments

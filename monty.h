@@ -51,12 +51,12 @@ void exitError(stack_t **stack);
 
 /*NOTE: Monty functions for I/O*/
 
-typedef void (*instructionTable)(stack_t **stack, unsigned int lineNumber);
+typedef void (*instructionTable)(stack_t **stack, unsigned int line_number);
 void readFileByteCode(char *filename, stack_t **stack);
 char *parseLine(char *line);
 instructionTable getOpcodeFunc(char *str);
 
 /*NOTE: Monty instruction table*/
-void _push(stack_t **stack, unsigned int lineNumber);
-void _pall(stack_t **stack, unsigned int lineNumber);
+void _push(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
 #endif /*MONTY_H*/

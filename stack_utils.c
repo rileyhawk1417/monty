@@ -4,11 +4,11 @@
 /**
 * _push - Entry Point
 * @stack: stack to use
-* @lineNumber: line number from file
+* @line_number: line number from file
 * Description: Pushes arg from line number onto the stack
 * Return: Nothing
 */
-void _push(stack_t **stack, unsigned int lineNumber)
+void _push(stack_t **stack, unsigned int line_number)
 {
 stack_t *newStackItem;
 char *arg;
@@ -27,7 +27,7 @@ if (isNumber(arg) == 1 && arg != NULL)
 
 else
 {
-printf("L%d: usage: push integer\n", lineNumber);
+printf("L%d: usage: push integer\n", line_number);
 exitError(stack);
 }
 
@@ -41,11 +41,11 @@ if (stackBusy == 0)
 /**
 * _pall - Entry Point
 * @stack: stack to use
-* @lineNumber: line number from file
+* @line_number: line number from file
 * Description: Pulls the items from the stack
 * Return: Nothing
 */
-void _pall(stack_t **stack, unsigned int lineNumber)
+void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
 stack_t *stackList;
 
