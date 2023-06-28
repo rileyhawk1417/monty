@@ -43,3 +43,78 @@ idx++;
 }
 return (1);
 }
+
+/**
+ * _rotl - Entry Point
+ * @stack: The stack to use
+ * @line_number: line number from file 
+ * Description: Flip the stack to the top
+ * Return: Nothing
+ */
+void _rotl(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+{
+stack_t *stackList;
+int valueA, valueB;
+
+if (*stack == NULL)
+	return;
+
+stackList = *stack;
+while (stackList->next)
+	stackList = stackList->next;
+
+while (stackList)
+{
+if (!stackList->next)
+{
+valueA = stackList->n;
+stackList->n = (*stack)->n;
+}
+else
+{
+valueB = stackList->n;
+stackList->n = valueA;
+valueA = valueB;
+}
+stackList = stackList->prev;
+}
+
+}
+
+/**
+ * _rotr - Entry Point
+ * @stack: The stack to use
+ * @line_number: line number from file 
+ * Description: Flip the stack to the bottom
+ * Return: Nothing
+ */
+void _rotr(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
+{
+stack_t *stackListA, *stackListB;
+int valueA, valueB;
+
+if (*stack == NULL)
+	return;
+
+stackListA = *stack;
+stackListB = *stack;
+while (stackListA->next)
+	stackListA = stackListA->next;
+
+while (stackListB)
+{
+if (stackListB->prev == NULL)
+{
+valueA = stackListB->n;
+stackListB->n = stackListA->n;
+}
+else
+{
+valueB = stackListB->n;
+stackListB->n = valueA;
+valueA = valueB;
+}
+stackListA = stackListB->next;
+}
+
+}

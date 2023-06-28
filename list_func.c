@@ -69,50 +69,6 @@ newNode->next = NULL;
 return (newNode);
 }
 
-/**
-* delete_dnodeint_at_index - Entry point
-* @head: Doubly Linked List
-* @index: id of target node
-* Return: 0 on success, 1 on fail
-* Description: Get a node value from the list with index
-* then add a new value after
-*/
-int delete_dnodeint_at_index(stack_t **head, unsigned int index)
-{
-stack_t *targetNode;
-stack_t *tmpNode;
-unsigned int count = 0;
-
-if (head != NULL)
-	return (-1);
-
-targetNode = *head;
-
-if (index == 0)
-{
-*head = targetNode->next;
-if (targetNode->next != NULL)
-	targetNode->next->prev = NULL;
-free(targetNode);
-return (1);
-}
-
-while (count < (index - 1))
-{
-if (targetNode == NULL)
-	return (-1);
-targetNode = targetNode->next;
-count++;
-}
-
-tmpNode = targetNode->next->next;
-if (tmpNode->next->next != NULL)
-	targetNode->next->next->prev = targetNode;
-free(targetNode->next);
-targetNode->next = tmpNode;
-
-return (1);
-}
 
 /**
 * free_dlistint - Entry point
