@@ -66,4 +66,11 @@ instructionTable getOpcodeFunc(char *str);
 /*NOTE: Monty instruction table*/
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, unsigned int line_number);
+void _nop(stack_t **stack, unsigned int line_number);
+
+/*NOTE: Math functions for Monty*/
+void _add(stack_t **stack, unsigned int line_number);
 #endif /*__MONTY_H__*/

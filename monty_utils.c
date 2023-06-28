@@ -64,6 +64,11 @@ int idx;
 instruction_t instruction[] = {
 {"push", _push},
 {"pall", _pall},
+{"pint", _pint},
+{"pop", _pop},
+{"swap", _swap},
+{"add", _add},
+{"nop", _nop},
 /*TODO: add other opcode functions */
 {NULL, NULL},
 };
