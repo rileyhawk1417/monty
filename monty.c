@@ -13,7 +13,7 @@ stack_t *stack;
 stack = NULL;
 if (argCount != 2)
 {
-printf("Usage: monty file\n");
+fprintf(stderr, "Usage: monty file\n");
 exitError(&stack);
 }
 readFileByteCode(args[1], &stack);

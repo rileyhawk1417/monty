@@ -31,7 +31,7 @@ newNode->n = n;
 newNode->next = *head;
 newNode->prev = NULL;
 *head = newNode;
-return (newNode);
+return (*head);
 }
 
 /**

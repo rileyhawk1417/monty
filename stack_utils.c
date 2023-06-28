@@ -14,8 +14,9 @@ stack_t *newStackItem;
 char *arg;
 int push_arg = 0;
 
+/*WARN: Unused newStackItem is causing leaks */
 newStackItem = malloc(sizeof(stack_t));
-if (!newStackItem)
+if (newStackItem == NULL)
 {
 fprintf(stderr, "Error: malloc failed\n");
 exitError(stack);
@@ -34,8 +35,12 @@ exitError(stack);
 if (stackBusy == 1)
 	add_dnodeint_end(stack, push_arg);
 
+
 if (stackBusy == 0)
 	add_dnodeint(stack, push_arg);
+
+/*NOTE: Free up the stack at the end*/
+free(newStackItem);
 }
 
 /**

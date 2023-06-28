@@ -10,7 +10,8 @@
 */
 void readFileByteCode(char *filename, stack_t **stack)
 {
-char *buffer = NULL, *line;
+char *buffer = NULL;
+char *line;
 instructionTable functionTable;
 int lineCount = 1;
 size_t idx = 0;

@@ -23,12 +23,9 @@ exit(EXIT_FAILURE);
 */
 int isNumber(char *str)
 {
-unsigned int idx;
+unsigned int idx = 0;
 if (str == NULL)
-{
-return (0);
-idx = 0;
-}
+	return (0);
 
 while (str[idx])
 {

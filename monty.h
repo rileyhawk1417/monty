@@ -1,8 +1,11 @@
 #ifndef __MONTY_H__
 #define __MONTY_H__
 
-#include <ctype.h>
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
 #include <stdio.h>
+#endif /*_GNU_SOURCE*/
+#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -40,6 +43,7 @@ char *opcode;
 void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
 extern int stackBusy;
 
 /*NOTE: Stack Functions  */
@@ -62,4 +66,4 @@ instructionTable getOpcodeFunc(char *str);
 /*NOTE: Monty instruction table*/
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
-#endif /*MONTY_H*/
+#endif /*__MONTY_H__*/
