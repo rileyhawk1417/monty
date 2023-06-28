@@ -17,7 +17,7 @@ int push_arg = 0;
 newStackItem = malloc(sizeof(stack_t));
 if (!newStackItem)
 {
-printf("Error: malloc failed\n");
+fprintf(stderr, "Error: malloc failed\n");
 exitError(stack);
 }
 
@@ -27,7 +27,7 @@ if (isNumber(arg) == 1 && arg != NULL)
 
 else
 {
-printf("L%d: usage: push integer\n", line_number);
+fprintf(stderr, "L%d: usage: push integer\n", line_number);
 exitError(stack);
 }
 

@@ -15,12 +15,13 @@ instructionTable functionTable;
 int lineCount = 1;
 size_t idx = 0;
 /*NOTE: Filestatus 0 means it closed, -1 means error */
-int fileStatus, read;
+int fileStatus;
+ssize_t read = 1;
 FILE *file = fopen(filename, "r");
 
 if (file == NULL)
 {
-printf("Error: Can't open file %s\n", filename);
+fprintf(stderr, "Error: Can't open file %s\n", filename);
 exitError(stack);
 }
 while ((read = getline(&buffer, &idx, file)) != -1)
@@ -34,7 +35,7 @@ continue;
 functionTable = getOpcodeFunc(line);
 if (functionTable == NULL)
 {
-printf("L%d: unknown instruction %s\n", lineCount, line);
+fprintf(stderr, "L%d: unknown instruction %s\n", lineCount, line);
 exitError(stack);
 }
 
