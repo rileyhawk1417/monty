@@ -3,7 +3,7 @@
 /**
  * _add - Entry Point
  * @stack: pointer to the stack for use
- * @line_number: line number from file 
+ * @line_number: line number from file
  * Description: Add the two items at the top of the stack
  * Return: Nothing
  */
