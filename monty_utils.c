@@ -13,7 +13,7 @@ void readFileByteCode(char *filename, stack_t **stack)
 char *buffer = NULL, *line;
 instructionTable functionTable;
 int lineCount = 1;
-size_t i = 0;
+size_t idx = 0;
 /*NOTE: Filestatus 0 means it closed, -1 means error */
 int fileStatus, read;
 FILE *file = fopen(filename, "r");
@@ -23,7 +23,7 @@ if (file == NULL)
 printf("Error: Can't open file %s\n", filename);
 exitError(stack);
 }
-while ((read = getline(&buffer, &i, file)) != -1)
+while ((read = getline(&buffer, &idx, file)) != -1)
 {
 line = parseLine(buffer);
 if (line == NULL || line[0] == '#')
@@ -37,12 +37,13 @@ if (functionTable == NULL)
 printf("L%d: unknown instruction %s\n", lineCount, line);
 exitError(stack);
 }
+
 functionTable(stack, lineCount);
 lineCount++;
 }
+
 free(buffer);
 fileStatus = fclose(file);
-
 if (fileStatus == -1)
 	exit(-1);
 }
@@ -60,7 +61,7 @@ instructionTable getOpcodeFunc(char *str)
 int idx;
 instruction_t instruction[] = {
 {"push", _push},
-{"push", _pall},
+{"pall", _pall},
 /*TODO: add other opcode functions */
 {NULL, NULL},
 };
@@ -86,5 +87,5 @@ opcode = strtok(line, "\n ");
 if (opcode == NULL)
 	return (NULL);
 
-return (NULL);
+return (opcode);
 }

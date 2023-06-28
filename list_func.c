@@ -12,25 +12,24 @@
 stack_t *add_dnodeint(stack_t **head, const int n)
 {
 stack_t *newNode;
-stack_t *start;
 
 newNode = malloc(sizeof(stack_t));
 if (newNode == NULL)
 	return (NULL);
 
-newNode->n = n;
-newNode->prev = NULL;
-start = *head;
-
-if (start != NULL)
+if (*head == NULL)
 {
-while (start->prev != NULL)
-	start = start->prev;
+newNode->n = n;
+newNode->next = NULL;
+newNode->prev = NULL;
+*head = newNode;
+return (*head);
 }
 
+(*head)->prev = newNode;
+newNode->n = n;
 newNode->next = *head;
-if (start != NULL)
-	start->prev = newNode;
+newNode->prev = NULL;
 *head = newNode;
 return (newNode);
 }
@@ -45,28 +44,28 @@ return (newNode);
 stack_t *add_dnodeint_end(stack_t **head, const int n)
 {
 stack_t *newNode;
-stack_t *end;
+stack_t *tmp = *head;
 
 newNode = malloc(sizeof(stack_t));
 if (newNode == NULL)
 	return (NULL);
 
 newNode->n = n;
+
+if (*head == NULL)
+{
 newNode->next = NULL;
-end = *head;
-
-if (end != NULL)
-{
-while (end->next != NULL)
-	end = end->next;
-
-end->next = newNode;
-}
-else
-{
+newNode->prev = NULL;
 *head = newNode;
+return (newNode);
 }
-newNode->prev = end;
+
+while (tmp->next != NULL)
+	tmp = tmp->next;
+
+tmp->next = newNode;
+newNode->prev = tmp;
+newNode->next = NULL;
 return (newNode);
 }
 
@@ -80,41 +79,39 @@ return (newNode);
 */
 int delete_dnodeint_at_index(stack_t **head, unsigned int index)
 {
-stack_t *targetNode = *head;
+stack_t *targetNode;
 stack_t *tmpNode;
 unsigned int count = 0;
 
-if (targetNode != NULL)
-while (targetNode->prev != NULL)
-	targetNode = targetNode->prev;
+if (head != NULL)
+	return (-1);
 
-while (targetNode != NULL)
-{
-if (count == index)
-{
-if (count == 0)
+targetNode = *head;
+
+if (index == 0)
 {
 *head = targetNode->next;
-if (*head != NULL)
-	(*head)->prev = NULL;
-}
-else
-{
-tmpNode->next = targetNode->next;
 if (targetNode->next != NULL)
-	targetNode->next->prev = tmpNode;
-}
-
+	targetNode->next->prev = NULL;
 free(targetNode);
 return (1);
 }
 
-tmpNode = targetNode;
+while (count < (index - 1))
+{
+if (targetNode == NULL)
+	return (-1);
 targetNode = targetNode->next;
 count++;
 }
 
-return (-1);
+tmpNode = targetNode->next->next;
+if (tmpNode->next->next != NULL)
+	targetNode->next->next->prev = targetNode;
+free(targetNode->next);
+targetNode->next = tmpNode;
+
+return (1);
 }
 
 /**
@@ -127,14 +124,11 @@ void free_dlistint(stack_t *head)
 {
 stack_t *node;
 
-if (head != NULL)
-	while (head->prev != NULL)
-		head = head->prev;
-
-while ((node = head) != NULL)
+while (head != NULL)
 {
-head = head->next;
-free(node);
+node = head->next;
+free(head);
+head = node;
 }
 
 }
