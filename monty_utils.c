@@ -68,6 +68,10 @@ instruction_t instruction[] = {
 {"pop", _pop},
 {"swap", _swap},
 {"add", _add},
+{"sub", _sub},
+{"div", _div},
+{"mul", _mul},
+{"mod", _mod},
 {"nop", _nop},
 /*TODO: add other opcode functions */
 {NULL, NULL},
